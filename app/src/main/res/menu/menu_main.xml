@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.learn2crack.recyclerviewsearch.MainActivity">
+
+    <item
+        android:id="@+id/learn"
+        android:title="Learn"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/question"
+        android:title="Question"
+        android:visible="true"
+        app:showAsAction="never" />
+
+</menu>
