@@ -53,6 +53,11 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
+        inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View itemView = inflater.inflate(R.layout.card_row, container,
+                false);
+
         TextView tv_name,tv_version,tv_api_level,city,district,state;
         ImageView play,speech;
         final String audioUrl=records.get(position).getAudioUrl();
@@ -60,13 +65,6 @@ public class ViewPagerAdapter extends PagerAdapter {
         final String pronounciation=records.get(position).getPronunciation();
 
 
-
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.card_row, container,
-                false);
-        mediaplayer = new MediaPlayer();
-        mediaplayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         tv_name = (TextView)itemView.findViewById(R.id.tv_name);
         tv_version = (TextView)itemView.findViewById(R.id.tv_version);
@@ -102,7 +100,8 @@ public class ViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 try {
-
+                    mediaplayer = new MediaPlayer();
+                    mediaplayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaplayer.setDataSource(audioUrl);
                     mediaplayer.prepare();
 
@@ -124,7 +123,6 @@ public class ViewPagerAdapter extends PagerAdapter {
                 mediaplayer.start();
             }
         });
-
 
         ((ViewPager) container).addView(itemView);
 
@@ -151,7 +149,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((CardView) object);
-
     }
 
     @Override
